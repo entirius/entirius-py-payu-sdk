@@ -19,9 +19,10 @@ PayU payment gateway SDK — distribution `entirius-py-payu-sdk`, import `payu_s
 - Git flow: `master` (production) + `develop` (integration); changes land via PR; semver tag on `master`.
 - Never rename the import package `payu_sdk` — it is a public API contract.
 - Default: do not commit — git is the user's call.
+- No AI attribution in commits or PR descriptions.
 
 ## Architecture
 
-`payu_sdk/`: `PayU` client (OAuth authorize, orders, card add/delete) over the PayU REST API
-(`services/`), with request DTOs in `dto/`. Runtime dependency: `requests`.
+`src/payu_sdk/`: `payu_sdk.py` holds the `PayU` client (OAuth authorize, orders, payment lookup, card add/delete)
+over the PayU REST API; request DTOs live in `dto/`, response checks in `validators/`. Runtime dependency: `requests`.
 The integration test hits the PayU sandbox and is skipped without `PAYU_SANDBOX_*` env vars.
